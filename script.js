@@ -13,6 +13,7 @@ $(function(){
 		preventDefaultTab: 1,
 		useDelimiter: true,
 		delimiterChar : " ",
-		delimiterKeyCode : 48
+		delimiterKeyCode : 48,
+		sortResults: false
 	});
 });
