@@ -6,7 +6,7 @@ $(function(){
 		queryParamName: 's',
 		minChars: 1,
 		delay: 0,
-		useCache: true,
+		useCache: false,
 		maxCacheLength: 10,
 		matchInside: false,
 		selectFirst: true,
