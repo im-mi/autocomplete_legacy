@@ -7,7 +7,7 @@ $(function(){
 		useCache: true,
 		maxCacheLength: 10,
 		matchInside: false,
-		selectFirst: false,
+		selectFirst: true,
 		selectOnly: false,
 		preventDefaultReturn: 1,
 		preventDefaultTab: 1,
