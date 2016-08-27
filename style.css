@@ -1,0 +1,6 @@
+.acTagCount {
+float:right;
+}
+li:not(.acSelect) .acTagCount {
+color:GrayText;
+}
