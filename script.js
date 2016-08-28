@@ -12,8 +12,8 @@ $(function(){
 		preventDefaultReturn: 1,
 		preventDefaultTab: 1,
 		useDelimiter: true,
-		delimiterChar : " ",
-		delimiterKeyCode : 48,
+		delimiterChar: " ",
+		delimiterKeyCode: 48,
 		sortResults: false,
 		cellSeparator: ' ',
 		showResult: function(value, data) {
