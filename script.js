@@ -1,4 +1,6 @@
 $(function(){
+	var isNegative = false;
+	
 	$('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/tag_list/complete', {
 		//extraParams: {limit: 10},
 		queryParamName: 's',
@@ -17,10 +19,24 @@ $(function(){
 		sortResults: false,
 		cellSeparator: ' ',
 		showResult: function(value, data) {
-			var root = $('<div/>');
-			$('<span/>', { text: value, class:"acTagName" }).appendTo(root);
-			$('<span/>', { text: data, class:"acTagCount" }).appendTo(root);
+			var root = $('<div></div>');
+			$('<span></span>', { text: value, class:"acTagName" }).appendTo(root);
+			$('<span></span>', { text: data, class:"acTagCount" }).appendTo(root);
 			return root.html();
+		},
+		beforeUseConverter: function(s) {
+			isNegative = s[0] === '-';
+			return isNegative ? s.substr(1) : s;
+		},
+		processData: function(results) {
+			if (isNegative) {
+				for (var i = 0; i < results.length; i++)
+					results[i].value = "-" + results[i].value;
+			}
+			return results;
+		},
+		matchStringConverter: function(s, a, b) {
+			return s[0] === '-' ? s.substr(1) : s;
 		}
 	});
 });
