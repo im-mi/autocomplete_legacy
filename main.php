@@ -2,14 +2,58 @@
 /*
  * Name: Autocomplete (Legacy)
  * Author: im-mi <im.mi.mail.mi@gmail.com>
+ * License: GPLv2
  * Description: Adds the legacy autocomplete to search & tagging.
+ * Documentation:
+ *   Based on the original autocomplete system and the tag_edit
+ *   extension by various authors (<a href="mailto:webmaster@shishnet.org">Shish</a>,
+ *   <a href="mailto:dakutree@codeanimu.net">Daku</a>, etc.).
  */
 
 class LegacyAutoComplete extends Extension {
 	public function get_priority() {return 30;} // before Home
 
 	public function onPageRequest(PageRequestEvent $event) {
-		global $page;
+		global $page, $database;
+
+		if($event->page_matches("api/internal/autocomplete_legacy")) {
+			if(!isset($_GET["s"])) return;
+
+			//$limit = 0;
+			$cache_key = "autocomplete-" . strtolower($_GET["s"]);
+			$limitSQL = "";
+			$SQLarr = array("search"=>$_GET["s"]."%");
+			if(isset($_GET["limit"]) && $_GET["limit"] !== 0){
+				$limitSQL = "LIMIT :limit";
+				$SQLarr['limit'] = $_GET["limit"];
+				$cache_key .= "-" . $_GET["limit"];
+			}
+
+			$res = null;
+			$database->cache->get($cache_key);
+			if(!$res) {
+				$res = $database->get_pairs($database->scoreql_to_sql("
+					SELECT tag, count
+					FROM tags
+					WHERE SCORE_STRNORM(tag) LIKE SCORE_STRNORM(:search)
+						AND count > 0
+					ORDER BY count DESC
+					$limitSQL
+				"), $SQLarr);
+				$database->cache->set($cache_key, $res, 600);
+			}
+
+			$page->set_mode("data");
+			$page->set_type("text/plain");
+			$res = array_map(
+				function($value, $key) {
+					return $key . ' ' . $value;
+				},
+				array_values($res),
+				array_keys($res));
+			$page->set_data(implode("\n", $res));
+		}
+
 		$this->theme->build_legacy_autocomplete($page);
 	}
 }

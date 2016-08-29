@@ -1,7 +1,7 @@
 $(function(){
 	var isNegative = false;
 	
-	$('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/tag_list/complete', {
+	$('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/autocomplete_legacy', {
 		//extraParams: {limit: 10},
 		queryParamName: 's',
 		minChars: 1,
