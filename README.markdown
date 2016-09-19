@@ -2,11 +2,12 @@
 
 This is an extension for [Shimmie](https://github.com/shish/shimmie2/) which re-introduces the old autocompleter, [jquery-autocomplete](https://github.com/dyve/jquery-autocomplete).
 
-It adds a few additional features such as:
+It also adds a few additional features such as:
 - Show tag counts
 - Autocomplete negative tags
 - Sort tags based on usage
 - Scroll the autocomplete window
+- Show autocomplete for textarea
 
 # Licence
 
