@@ -1,7 +1,9 @@
 .acResults {
 	z-index: 1000;
-	max-height: 200px;
+}
+.acResults > ul {
 	overflow-y: auto;
+	max-height: 200px;
 }
 .acTagCount {
 	float: right;
