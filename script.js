@@ -26,8 +26,8 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 	cellSeparator: ' ',
 	showResult: function(value, data) {
 		var root = $('<div></div>');
-		$('<span></span>', { text: value, class:"acTagName" }).appendTo(root);
-		$('<span></span>', { text: data, class:"acTagCount" }).appendTo(root);
+		$('<span></span>', { text: value, class: "acTagName" }).appendTo(root);
+		$('<span></span>', { text: data, class: "acTagCount" }).appendTo(root);
 		return root.html();
 	},
 }).each(function() { (function(ac) {
