@@ -1,3 +1,8 @@
+.acResults {
+max-height:200px;
+overflow-x:none;
+overflow-y:auto;
+}
 .acTagCount {
 float:right;
 padding-left:15px;

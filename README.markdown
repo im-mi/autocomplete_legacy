@@ -6,6 +6,7 @@ It adds a few additional features such as:
 - Show tag counts
 - Autocomplete negative tags
 - Sort tags based on usage
+- Scroll the autocomplete window
 
 # Licence
 

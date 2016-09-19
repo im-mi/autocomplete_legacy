@@ -8,6 +8,7 @@ $(function(){
 
 	$('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/autocomplete_legacy', {
 		//extraParams: {limit: 10},
+		maxItemsToShow: 300,
 		queryParamName: 's',
 		minChars: 1,
 		delay: 0,
