@@ -30,9 +30,7 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 		$('<span></span>', { text: data, class:"acTagCount" }).appendTo(root);
 		return root.html();
 	},
-}).each(function() {
-	var ac = $(this).data("autocompleter");
-
+}).each(function() { (function(ac) {
 	var searchQuery;
 
 	ac.options.beforeUseConverter = function(s) {
@@ -66,5 +64,5 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 			return patternIndex === 0;
 		}
 	};
-});
+})($(this).data("autocompleter"));});
 });
