@@ -1,12 +1,15 @@
 .acResults {
-max-height:200px;
-overflow-x:none;
-overflow-y:auto;
+	z-index: 1000;
+	max-height: 200px;
+	overflow-y: auto;
 }
 .acTagCount {
-float:right;
-padding-left:15px;
+	float: right;
+	padding-left: 15px;
 }
 li:not(.acSelect) .acTagCount {
-color:GrayText;
+	color: gray;
+}
+.acSelect {
+	color: white;
 }
