@@ -27,7 +27,7 @@ class LegacyAutoComplete extends Extension {
 
 			$limitSQL = "LIMIT $limit";
 
-			$cache_key = "autocomplete-" . strtolower($_GET["s"]) . "-$limit";
+			$cache_key = "autocomplete-legacy-" . strtolower($_GET["s"]) . "-$limit";
 			$res = $database->cache->get($cache_key);
 			if (!$res) {
 				$res = $database->get_pairs($database->scoreql_to_sql("
