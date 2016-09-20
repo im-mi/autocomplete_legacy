@@ -19,15 +19,16 @@ class LegacyAutoComplete extends Extension {
 		if($event->page_matches("api/internal/autocomplete_legacy")) {
 			if(!isset($_GET["s"])) return;
 
-			//$limit = 0;
-			$cache_key = "autocomplete-" . strtolower($_GET["s"]);
-			$limitSQL = "";
 			$SQLarr = array("search"=>$_GET["s"]."%");
-			if(isset($_GET["limit"]) && $_GET["limit"] !== 0){
-				$limitSQL = "LIMIT :limit";
-				$SQLarr['limit'] = $_GET["limit"];
-				$cache_key .= "-" . $_GET["limit"];
-			}
+
+			$max_limit = 20;
+			$limit = isset($_GET["limit"]) ? int_escape($_GET["limit"]) : $max_limit;
+			$limit = clamp($limit, 0, $max_limit);
+
+			$limitSQL = "LIMIT $limit";
+
+			$cache_key = "autocomplete-" . strtolower($_GET["s"]);
+			$cache_key .= "-$limit";
 
 			$res = null;
 			$database->cache->get($cache_key);
