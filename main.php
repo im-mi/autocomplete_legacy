@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Name: Autocomplete (Legacy)
  * Author: im-mi <im.mi.mail.mi@gmail.com>
@@ -9,17 +10,16 @@
  *   extension by various authors (<a href="mailto:webmaster@shishnet.org">Shish</a>,
  *   <a href="mailto:dakutree@codeanimu.net">Daku</a>, etc.).
  */
-
 class LegacyAutoComplete extends Extension {
-	public function get_priority() {return 30;} // before Home
+	public function get_priority() { return 30; } // before Home
 
 	public function onPageRequest(PageRequestEvent $event) {
 		global $page, $database;
 
-		if($event->page_matches("api/internal/autocomplete_legacy")) {
-			if(!isset($_GET["s"])) return;
+		if ($event->page_matches("api/internal/autocomplete_legacy")) {
+			if (!isset($_GET["s"])) return;
 
-			$SQLarr = array("search"=>$_GET["s"]."%");
+			$SQLarr = array("search" => $_GET["s"] . "%");
 
 			$max_limit = 20;
 			$limit = isset($_GET["limit"]) ? int_escape($_GET["limit"]) : $max_limit;
@@ -27,12 +27,10 @@ class LegacyAutoComplete extends Extension {
 
 			$limitSQL = "LIMIT $limit";
 
-			$cache_key = "autocomplete-" . strtolower($_GET["s"]);
-			$cache_key .= "-$limit";
-
+			$cache_key = "autocomplete-" . strtolower($_GET["s"]) . "-$limit";
 			$res = null;
 			$database->cache->get($cache_key);
-			if(!$res) {
+			if (!$res) {
 				$res = $database->get_pairs($database->scoreql_to_sql("
 					SELECT tag, count
 					FROM tags
