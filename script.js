@@ -24,6 +24,7 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 	delimiterKeyCode: 48,
 	sortResults: false,
 	cellSeparator: ' ',
+	autoWidth: "width",
 	showResult: function(value, data) {
 		var root = $('<div></div>');
 		$('<span></span>', { text: value, class: "acTagName" }).appendTo(root);
