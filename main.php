@@ -38,18 +38,21 @@ class LegacyAutoComplete extends Extension {
 					ORDER BY count DESC
 					$limitSQL
 				"), $SQLarr);
+
+				$res = array_map(
+					function($value, $key) {
+						return $key . ' ' . $value;
+					},
+					array_values($res),
+					array_keys($res));
+				$res = implode("\n", $res);
+
 				$database->cache->set($cache_key, $res, 600);
 			}
 
 			$page->set_mode("data");
 			$page->set_type("text/plain");
-			$res = array_map(
-				function($value, $key) {
-					return $key . ' ' . $value;
-				},
-				array_values($res),
-				array_keys($res));
-			$page->set_data(implode("\n", $res));
+			$page->set_data($res);
 		}
 
 		$this->theme->build_legacy_autocomplete($page);
