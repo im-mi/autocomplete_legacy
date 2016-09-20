@@ -39,13 +39,10 @@ class LegacyAutoComplete extends Extension {
 					$limitSQL
 				"), $SQLarr);
 
-				$res = array_map(
-					function($value, $key) {
-						return $key . ' ' . $value;
-					},
-					array_values($res),
-					array_keys($res));
-				$res = implode("\n", $res);
+				$text_res = "";
+				foreach ($res as $key => $value)
+					$text_res .= "$key $value\n";
+				$res = $text_res;
 
 				$database->cache->set($cache_key, $res, 600);
 			}
