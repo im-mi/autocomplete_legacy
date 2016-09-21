@@ -9,7 +9,7 @@
 	float: right;
 	padding-left: 15px;
 }
-li:not(.acSelect) .acTagCount {
+.acResults li:not(.acSelect) .acTagCount {
 	color: gray;
 }
 .acSelect {
