@@ -1,6 +1,9 @@
 .acResults {
 	z-index: 1;
 	word-wrap: break-word;
+	white-space: normal;
+	color: black;
+	text-align: left;
 }
 .acResults > ul {
 	overflow-y: auto;
