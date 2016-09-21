@@ -1,11 +1,4 @@
 $(function(){
-var normalizeSearchQuery = function(s) {
-	s = s ? s : "";
-	s = s.trim();
-	s = s && s[0] === '-' ? s.substr(1) : s;
-	return s;
-}
-
 $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/autocomplete_legacy', {
 	//extraParams: {limit: 10},
 	maxItemsToShow: 300,
@@ -34,6 +27,13 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 	},
 }).each(function() { (function(ac) {
 	var searchQuery;
+
+	var normalizeSearchQuery = function(s) {
+		s = s ? s : "";
+		s = s.trim();
+		s = s && s[0] === '-' ? s.substr(1) : s;
+		return s;
+	}
 
 	ac.options.beforeUseConverter = function(s) {
 		//
