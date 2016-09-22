@@ -1,5 +1,6 @@
 $(function(){
-$('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/autocomplete_legacy', {
+$('[name=search], .autocomplete_tags').autocomplete(
+	base_href + '/api/internal/autocomplete_legacy', {
 	//extraParams: {limit: 10},
 	maxItemsToShow: 300,
 	queryParamName: 's',
@@ -21,8 +22,8 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 	attachToParent: true,
 	showResult: function(value, data) {
 		var root = $('<div></div>');
-		$('<span></span>', { text: value, class: "acTagName" }).appendTo(root);
-		$('<span></span>', { text: data, class: "acTagCount" }).appendTo(root);
+		$('<span></span>', { text:value, class:"acTagName" }).appendTo(root);
+		$('<span></span>', { text:data, class:"acTagCount" }).appendTo(root);
 		return root.html();
 	},
 }).each(function() { (function(ac) {
@@ -37,7 +38,7 @@ $('[name=search],.autocomplete_tags').autocomplete(base_href + '/api/internal/au
 
 	ac.options.beforeUseConverter = function(s) {
 		//
-		// Here search queries are normalized before being submitted to the server.
+		// Here, search queries are normalized before being submitted to the server.
 		// Additionally, the original search query is recorded for later use.
 		//
 		searchQuery = s;
