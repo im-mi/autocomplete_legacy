@@ -1,25 +1,40 @@
 $(function(){
 $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	base_href + '/api/internal/autocomplete_legacy', {
-	//extraParams: {limit: 10},
-	maxItemsToShow: 300,
-	queryParamName: 's',
-	minChars: 1,
 	delay: 0,
-	useCache: true,
-	maxCacheLength: 10,
+	minChars: 1,
 	matchInside: false,
+
+	// The maximum number of results to request from the server.
+	// The server may decide to provide more or less than this amount (see main.php).
+	// Remove this line to use whatever limit the server decides.
+	extraParams: { limit: 20 },
+
+	// The maximum number of results to display, regardless of how many are provided by the server.
+	maxItemsToShow: 300,
+
+	// Determines how the autocomplete window is sized horizontally.
+	// Possible values:
+	//   width: Use a fixed-width
+	//   min-width: Use a minimum width but no maximum width
+	//   null: Determine width automatically
+	autoWidth: "width",
+	// Whether to attach the autocomplete window to the parent of the input field.
+	// Enabling this allows the autocomplete window to follow fixed elements, but
+	// may cause issues because it will inherit styles.
+	attachToParent: true,
+
 	selectFirst: true,
-	selectOnly: false,
 	preventDefaultReturn: 1,
 	preventDefaultTab: 1,
+
 	useDelimiter: true,
 	delimiterChar: " ",
 	delimiterKeyCode: 48,
-	sortResults: false,
+	sortResults: false, // The results are sorted by the server
 	cellSeparator: ' ',
-	autoWidth: "width",
-	attachToParent: true,
+	queryParamName: 's',
+
 	showResult: function(value, data) {
 		return $("<div>")
 			.append($("<span>", { text:value, class:"acTagName" }))
