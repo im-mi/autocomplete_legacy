@@ -4,14 +4,29 @@
 	white-space: normal;
 	color: black;
 	text-align: left;
+	max-height: 200px;
+	overflow-y: auto;
 }
 .acResults > ul {
-	overflow-y: auto;
-	max-height: 200px;
+	display: table;
+	border-collapse: collapse;
+	width: 100%;
+}
+.acResults > ul > li {
+	display: table-row;
+	vertical-align: middle;
+}
+.acResults > ul > li > * {
+	display: table-cell;
+	padding: 2px;
+}
+.acTagName {
+	width: 100%;
+	word-break: break-all;
 }
 .acTagCount {
-	float: right;
-	padding-left: 15px;
+	vertical-align: middle;
+	text-align: center;
 }
 .acResults li:not(.acSelect) .acTagCount {
 	color: gray;
