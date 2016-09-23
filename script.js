@@ -1,5 +1,5 @@
 $(function(){
-$('[name=search], .autocomplete_tags').autocomplete(
+$('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	base_href + '/api/internal/autocomplete_legacy', {
 	//extraParams: {limit: 10},
 	maxItemsToShow: 300,
