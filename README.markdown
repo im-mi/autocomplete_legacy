@@ -1,6 +1,6 @@
 # Autocomplete (Legacy)
 
-This is an extension for [Shimmie](https://github.com/shish/shimmie2/) which re-introduces the old autocompleter, [jquery-autocomplete](https://github.com/dyve/jquery-autocomplete).
+This is an extension for [Shimmie](https://github.com/shish/shimmie2/) with the goal of providing an updated autocomplete window more like the old one (not using [Tag-it!](http://aehlke.github.io/tag-it/)). It uses [jquery-autocomplete](https://github.com/dyve/jquery-autocomplete), like the old autocomplete, albeit with modifications.
 
 It also has additional features:
 - Show and sort tags by their usage counts
@@ -9,9 +9,9 @@ It also has additional features:
 - Show more results in less area (make the window fixed-size and scrollable)
 - Work with fixed-position input fields (attach directly to the parent element)
 - Have better performance (limit the number of results, have a cache system that actually works)
-... and more.
+- ... and more.
 
-Note that many of these features can be adjusted inside script.js.
+Note that many of these features can be adjusted by modifying script.js, style.css, or main.php.
 
 # Licence
 

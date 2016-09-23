@@ -1,10 +1,18 @@
 .acResults {
+	/*
+	This is the autocomplete window's maximum height.
+	Viewing results past this height will require scrolling.
+
+	To disable scrolling inside the autocomplete window, either remove the
+	following line or override it with something else.
+	*/
+	max-height: 200px;
+
 	z-index: 1;
 	word-wrap: break-word;
 	white-space: normal;
 	color: black;
 	text-align: left;
-	max-height: 200px;
 	overflow-y: auto;
 }
 .acResults > ul {
