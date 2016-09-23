@@ -21,10 +21,10 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	autoWidth: "width",
 	attachToParent: true,
 	showResult: function(value, data) {
-		var root = $('<div></div>');
-		$('<span></span>', { text:value, class:"acTagName" }).appendTo(root);
-		$('<span></span>', { text:data, class:"acTagCount" }).appendTo(root);
-		return root.html();
+		return $("<div>")
+			.append($("<span>", { text:value, class:"acTagName" }))
+			.append($("<span>", { text:data, class:"acTagCount" }))
+			.html();
 	},
 }).each(function() { (function(ac) {
 	var searchQuery;
