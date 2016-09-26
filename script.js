@@ -29,8 +29,12 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	preventDefaultTab: 1,
 
 	useDelimiter: true,
-	delimiterChar: " ",
-	delimiterKeyCode: 48,
+	delimiterChars: [
+		" ", "\r", "\n", "\t",
+		"\xA0" // Non-breaking space
+	],
+	delimiterKeyCodes: [ 48 ],
+	selectionDelimiter: " ",
 	sortResults: false, // The results are sorted by the server
 	cellSeparator: ' ',
 	queryParamName: 's',
