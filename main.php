@@ -13,15 +13,31 @@
 class LegacyAutoComplete extends Extension {
 	public function get_priority() { return 30; } // before Home
 
+	public function onInitExt(InitExtEvent $event) {
+		global $config;
+		$config->set_default_int("autocomplete_legacy_delay", 300);
+		$config->set_default_int("autocomplete_legacy_max_results", 20);
+		$config->set_default_bool("autocomplete_legacy_select_first", true);
+	}
+
+	public function onSetupBuilding(SetupBuildingEvent $event) {
+		$sb = new SetupBlock("Autocomplete (Legacy)");
+		$sb->add_int_option("autocomplete_legacy_delay", "Delay: ");
+		$sb->add_label("ms");
+		$sb->add_int_option("autocomplete_legacy_max_results", "<br/>Max Results: ");
+		$sb->add_bool_option("autocomplete_legacy_select_first", "<br/>Select First: ");
+		$event->panel->add_block($sb);
+	}
+
 	public function onPageRequest(PageRequestEvent $event) {
-		global $page, $database;
+		global $page, $database, $config;
 
 		if ($event->page_matches("api/internal/autocomplete_legacy")) {
 			if (!isset($_GET["s"])) return;
 
 			$SQLarr = array("search" => $_GET["s"] . "%");
 
-			$max_limit = 20;
+			$max_limit = $config->get_int("autocomplete_legacy_max_results");
 			$limit = isset($_GET["limit"]) ? int_escape($_GET["limit"]) : $max_limit;
 			$limit = clamp($limit, 0, $max_limit);
 

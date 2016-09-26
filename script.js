@@ -1,17 +1,22 @@
 $(function(){
+var autocompleteLegacyDelay = parseInt($("meta[name=autocomplete_legacy_delay]").attr("content"), 10);
+if (isNaN(autocompleteLegacyDelay))
+	autocompleteLegacyDelay = 300;
+var autocompleteLegacySelectFirst = Boolean($("meta[name=autocomplete_legacy_select_first]").length);
+
 $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	base_href + '/api/internal/autocomplete_legacy', {
-	delay: 0,
+	delay: autocompleteLegacyDelay,
 	minChars: 1,
 	matchInside: false,
 
 	// The maximum number of results to request from the server.
 	// The server may decide to provide more or less than this amount (see main.php).
 	// Remove this line to use whatever limit the server decides.
-	extraParams: { limit: 20 },
+	// extraParams: { limit: 20 },
 
 	// The maximum number of results to display, regardless of how many are provided by the server.
-	maxItemsToShow: 300,
+	maxItemsToShow: 1000,
 
 	// Determines how the autocomplete window is sized horizontally.
 	// Possible values:
@@ -24,7 +29,7 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	// may cause issues because it will inherit styles.
 	attachToParent: true,
 
-	selectFirst: true,
+	selectFirst: autocompleteLegacySelectFirst,
 	preventDefaultReturn: 1,
 	preventDefaultTab: 1,
 

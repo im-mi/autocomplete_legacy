@@ -11,7 +11,7 @@ It also has additional features:
 - Have better performance (limit the number of results, have a cache system that actually works)
 - ... and more.
 
-Note that many of these features can be adjusted by modifying script.js, style.css, or main.php.
+Note that many of these features can be adjusted in the board config or by modifying script.js, style.css, or main.php.
 
 # Licence
 
