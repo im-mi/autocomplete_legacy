@@ -33,7 +33,7 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 		" ", "\r", "\n", "\t",
 		"\xA0" // Non-breaking space
 	],
-	delimiterKeyCodes: [ 48 ],
+	delimiterKeyCodes: [],
 	selectionDelimiter: " ",
 	sortResults: false, // The results are sorted by the server
 	cellSeparator: ' ',
