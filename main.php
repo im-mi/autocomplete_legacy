@@ -41,8 +41,6 @@ class LegacyAutoComplete extends Extension {
 			$limit = isset($_GET["limit"]) ? int_escape($_GET["limit"]) : $max_limit;
 			$limit = clamp($limit, 0, $max_limit);
 
-			$limitSQL = "LIMIT $limit";
-
 			$cache_key = "autocomplete-legacy-" . strtolower($_GET["s"]) . "-$limit";
 			$res = $database->cache->get($cache_key);
 			if (!$res) {
@@ -52,7 +50,7 @@ class LegacyAutoComplete extends Extension {
 					WHERE SCORE_STRNORM(tag) LIKE SCORE_STRNORM(:search)
 						AND count > 0
 					ORDER BY count DESC
-					$limitSQL
+					LIMIT $limit
 				"), $SQLarr);
 
 				$text_res = "";
