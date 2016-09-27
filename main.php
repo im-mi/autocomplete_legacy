@@ -34,14 +34,15 @@ class LegacyAutoComplete extends Extension {
 
 		if ($event->page_matches("api/internal/autocomplete_legacy")) {
 			if (!isset($_GET["s"])) return;
+			$search = $_GET["s"];
 
-			$SQLarr = array("search" => $_GET["s"] . "%");
+			$SQLarr = array("search" => $search . "%");
 
 			$max_limit = $config->get_int("autocomplete_legacy_max_results");
 			$limit = isset($_GET["limit"]) ? int_escape($_GET["limit"]) : $max_limit;
 			$limit = clamp($limit, 0, $max_limit);
 
-			$cache_key = "autocomplete-legacy-" . strtolower($_GET["s"]) . "-$limit";
+			$cache_key = "autocomplete-legacy-" . strtolower($search) . "-$limit";
 			$res = $database->cache->get($cache_key);
 			if ($res === false) {
 				$res = $database->get_pairs($database->scoreql_to_sql("
