@@ -43,7 +43,7 @@ class LegacyAutoComplete extends Extension {
 
 			$cache_key = "autocomplete-legacy-" . strtolower($_GET["s"]) . "-$limit";
 			$res = $database->cache->get($cache_key);
-			if (!$res) {
+			if ($res === false) {
 				$res = $database->get_pairs($database->scoreql_to_sql("
 					SELECT tag, count
 					FROM tags
