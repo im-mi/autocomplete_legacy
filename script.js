@@ -55,7 +55,7 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 
 	var normalizeSearchQuery = function(s) {
 		s = s ? s : "";
-		s = s && s[0] === '-' ? s.substr(1) : s;
+		s = s && s.charAt(0) === '-' ? s.substr(1) : s;
 		return s;
 	}
 
@@ -71,7 +71,7 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	ac.options.filter = function(result, filter) {
 		var filterResult = ac.defaultFilter(result, filter);
 		// Adjust the result to match the sign of the original search query.
-		if (searchQuery && searchQuery[0] === '-')
+		if (searchQuery && searchQuery.charAt(0) === '-')
 			result.value = "-" + result.value;
 		return filterResult;
 	};
