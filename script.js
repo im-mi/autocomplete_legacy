@@ -4,8 +4,8 @@ if (isNaN(autocompleteLegacyDelay))
 	autocompleteLegacyDelay = 300;
 var autocompleteLegacySelectFirst = Boolean($("meta[name=autocomplete_legacy_select_first]").length);
 
-$('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
-	base_href + '/api/internal/autocomplete_legacy', {
+$("[name=search], .autocomplete_tags, #edit_pool_tag").autocomplete(
+	base_href + "/api/internal/autocomplete_legacy", {
 	delay: autocompleteLegacyDelay,
 	minChars: 1,
 	matchInside: false,
@@ -41,8 +41,8 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	delimiterKeyCodes: [],
 	selectionDelimiter: " ",
 	sortResults: false, // The results are sorted by the server
-	cellSeparator: ' ',
-	queryParamName: 's',
+	cellSeparator: " ",
+	queryParamName: "s",
 
 	showResult: function(value, data) {
 		return $("<div>")
@@ -55,7 +55,7 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 
 	var normalizeSearchQuery = function(s) {
 		s = s ? s : "";
-		s = s && s.charAt(0) === '-' ? s.substr(1) : s;
+		s = s && s.charAt(0) === "-" ? s.substr(1) : s;
 		return s;
 	}
 
@@ -71,7 +71,7 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	ac.options.filter = function(result, filter) {
 		var filterResult = ac.defaultFilter(result, filter);
 		// Adjust the result to match the sign of the original search query.
-		if (searchQuery && searchQuery.charAt(0) === '-')
+		if (searchQuery && searchQuery.charAt(0) === "-")
 			result.value = "-" + result.value;
 		return filterResult;
 	};
