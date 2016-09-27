@@ -55,7 +55,6 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 
 	var normalizeSearchQuery = function(s) {
 		s = s ? s : "";
-		s = s.trim();
 		s = s && s[0] === '-' ? s.substr(1) : s;
 		return s;
 	}
@@ -70,26 +69,11 @@ $('[name=search], .autocomplete_tags, #edit_pool_tag').autocomplete(
 	};
 
 	ac.options.filter = function(result, filter) {
-		if (!result.value) return false;
-		if (!ac.options.filterResults) return true;
-
-		var pattern = normalizeSearchQuery(filter);
-		var testValue = normalizeSearchQuery(result.value);
-		if (!ac.options.matchCase) {
-			pattern = pattern.toLowerCase();
-			testValue = testValue.toLowerCase();
-		}
-		var patternIndex = testValue.indexOf(pattern);
-
+		var filterResult = ac.defaultFilter(result, filter);
 		// Adjust the result to match the sign of the original search query.
-		if (searchQuery && searchQuery.trim()[0] === '-')
+		if (searchQuery && searchQuery[0] === '-')
 			result.value = "-" + result.value;
-
-		if (ac.options.matchInside) {
-			return patternIndex > -1;
-		} else {
-			return patternIndex === 0;
-		}
+		return filterResult;
 	};
 })($(this).data("autocompleter"));});
 });
